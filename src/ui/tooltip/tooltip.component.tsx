@@ -58,11 +58,16 @@ const Tooltip = React.forwardRef<
   });
 
   React.useEffect(() => {
-    setState({
-      ...state,
-      visible: props.isVisible ? STATES.SHOWN : STATES.HIDDEN,
-    })
-  }, [props.isVisible])
+    // setState({
+    //   ...state,
+    //   visible: props.isVisible ? STATES.SHOWN : STATES.HIDDEN,
+    // })
+    if (props.isVisible) {
+      show();
+    } else {
+      hide();
+    }
+  }, [props.isVisible]);
 
   const {
     visible,
