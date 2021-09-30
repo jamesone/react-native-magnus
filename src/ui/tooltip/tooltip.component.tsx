@@ -46,7 +46,7 @@ const Tooltip = React.forwardRef<
 
   const container = useRef<View>(null);
   const [state, setState] = useStateCallback({
-    visible: STATES.HIDDEN,
+    visible: props.isVisible ? STATES.SHOWN : STATES.HIDDEN,
     top: 0,
     left: 0,
     menuWidth: 0,
@@ -56,6 +56,14 @@ const Tooltip = React.forwardRef<
     marginAnimation: new Animated.Value(-8),
     opacityAnimation: new Animated.Value(0),
   });
+
+  React.useEffect(() => {
+    setState({
+      ...state,
+      visible: props.isVisible ? STATES.SHOWN : STATES.HIDDEN,
+    })
+  }, [props.isVisible])
+
   const {
     visible,
     menuHeight,
@@ -169,9 +177,11 @@ const Tooltip = React.forwardRef<
   useImperativeHandle(ref, () => ({
     show() {
       show();
+      // @todo add props.onShow?
     },
     hide() {
       hide();
+      // @todo add props.onHide?
     },
   }));
 

@@ -30,6 +30,7 @@ export interface TooltipProps
   animationDuration?: number;
   text: string | React.ReactNode;
   useNativeDriver?: boolean;
+  isVisible?: boolean;
 }
 
 export interface TriangleProps extends RNViewProps {
